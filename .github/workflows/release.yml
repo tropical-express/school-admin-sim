@@ -5,24 +5,37 @@ on:
     tags:
       - "v*"
 
+  workflow_dispatch:
+
 permissions:
   contents: write
 
 jobs:
+
   build:
     strategy:
       fail-fast: false
 
       matrix:
-        os:
-          - windows-latest
-          - ubuntu-latest
+        include:
+
+          - os: windows-latest
+            platform: windows
+
+          - os: ubuntu-latest
+            platform: linux
 
     runs-on: ${{ matrix.os }}
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -30,14 +43,8 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build application
         run: pnpm run dist
@@ -48,29 +55,55 @@ jobs:
           cd dist
 
           for file in *; do
+
             if [ -f "$file" ]; then
+
               sha256sum "$file" > "$file.sha256"
+
             fi
+
           done
 
       - name: Generate SHA256 (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
+
           cd dist
 
           Get-ChildItem -File | ForEach-Object {
 
-            $hash = Get-FileHash `
+            $hash =
+              Get-FileHash `
               $_.FullName `
               -Algorithm SHA256
 
             "$($hash.Hash)  $($_.Name)" |
-              Out-File "$($_.Name).sha256"
+            Out-File `
+            "$($_.Name).sha256"
 
           }
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.platform }}
+          path: dist/*
+
+  release:
+
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*
+          files: release/**/*
