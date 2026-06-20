@@ -47,7 +47,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build application
-        run: pnpm run dist
+        run: pnpm exec electron-builder --publish never
 
       - name: Generate SHA256 (Linux)
         if: runner.os == 'Linux'
@@ -102,6 +102,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: release
+          merge-multiple: true
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
