@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+School Admin Simulator
+</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<pre id="screen"></pre>
+
+<div>
+
+<button onclick="choose('warning')">
+
+Warning
+
+</button>
+
+<button onclick="choose('detention')">
+
+Detention
+
+</button>
+
+<button onclick="choose('suspension')">
+
+Suspension
+
+</button>
+
+<button onclick="saveGame()">
+
+Save
+
+</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+
+<script src="engine/game.js"></script>
+
+<script src="engine/students.js"></script>
+
+<script src="engine/save.js"></script>
+
+<script src="engine/escalation.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>

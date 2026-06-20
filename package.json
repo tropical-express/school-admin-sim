@@ -1,0 +1,75 @@
+{
+  "name": "school-admin-simulator",
+  "version": "0.1.0",
+  "description": "A text-based school administration simulation game.",
+  "author": "Your Name",
+  "license": "GPL-3.0",
+  "main": "main.js",
+
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.12"
+  },
+
+  "build": {
+    "appId": "com.school.adminsim",
+
+    "productName": "School Admin Simulator",
+
+    "directories": {
+      "output": "dist"
+    },
+
+    "files": [
+      "index.html",
+      "style.css",
+      "app.js",
+      "main.js",
+
+      "engine/**/*",
+
+      "data/**/*",
+
+      "package.json"
+    ],
+
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  }
+}

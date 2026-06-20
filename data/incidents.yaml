@@ -1,0 +1,16 @@
+incidents:
+
+  - id: phone
+    text: "{student} was caught using a phone during class."
+
+  - id: skip
+    text: "{student} skipped class."
+
+  - id: argument
+    text: "{student} was involved in a hallway argument."
+
+  - id: disruption
+    text: "{student} repeatedly interrupted the teacher."
+
+  - id: tardy
+    text: "{student} arrived late for class."

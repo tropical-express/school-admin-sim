@@ -1,0 +1,16 @@
+personalities:
+
+  - name: Rebellious
+    multiplier: 1.4
+
+  - name: Class Clown
+    multiplier: 1.2
+
+  - name: Competitive
+    multiplier: 1.1
+
+  - name: Quiet
+    multiplier: 0.8
+
+  - name: Model Student
+    multiplier: 0.5

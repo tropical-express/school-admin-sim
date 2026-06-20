@@ -1,0 +1,21 @@
+body {
+
+  background: black;
+
+  color: #00ff99;
+
+  font-family: monospace;
+
+  padding: 20px;
+
+}
+
+button {
+
+  margin: 5px;
+
+  padding: 8px;
+
+  cursor: pointer;
+
+}
