@@ -1,4 +1,5 @@
 # 🏫 School Admin Simulator
+[![Download school-admin-sim](https://img.shields.io/sourceforge/dt/school-admin-sim.svg)](https://sourceforge.net/projects/school-admin-sim/files/latest/download)
 
 A text-based school administration simulation game built with HTML, Electron, JavaScript, and YAML.
 
@@ -88,6 +89,11 @@ data/
 ---
 
 ## 🚀 Running Locally
+Clone the repo 
+```bash
+git clone https://github.com/tropical-express/school-admin-sim.git
+```
+
 
 Install dependencies:
 

@@ -91,9 +91,9 @@ jobs:
           name: linux
           path: |
             dist/*.AppImage
-            dist/*.zip
+            dist/*.tgz
             dist/*.sha256
-
+            dist/*.zip
       - name: Upload Windows artifacts
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v4
